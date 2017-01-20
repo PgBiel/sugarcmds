@@ -37,7 +37,7 @@ const CommandHandler = exports.CommandHandler = class CommandHandler {
 
 	async test(message){
 		if (!(message instanceof Discord.Message)) throw new TypeError("Message must be a message.");
-		if (!this.client.commands||this.client.commands.keysize < 1) return null;
+		if (!this.client.commands||this.client.commands.size < 1) return null;
 		let client = this.client;
 		let cmdtobeused;
 		for (let command in client.commands.toObject()) {
