@@ -1,2 +1,2 @@
-# sugarcmds
-Yet another command framework for discord.js.
+# Sugar Cmds
+Yet another command framework for [discord.js](/hydrabolt/discord.js).
