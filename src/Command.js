@@ -16,5 +16,4 @@ const Command = module.exports = class Command {
 		if (!(message instanceof Discord.Message)) throw new TypeError("Message must be a message.");
 		return this.function(message, !!message.guild);
 	}
-    thisisaplaceholder(){}
 };
