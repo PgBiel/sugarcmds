@@ -50,6 +50,7 @@ const CommandHandler = exports.CommandHandler = class CommandHandler {
 			}
 		}
 		if (cmdtobeused) {
+			if (cmdtobeused.guildOnly && !message.guild) return null;
 			return await cmdtobeused.run(message);
 		} else {
 			return null;
