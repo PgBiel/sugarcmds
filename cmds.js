@@ -10,7 +10,7 @@ global.AsyncFunction = tempvar.constructor;
 
 let Client = exports.Client = undefined;
 
-const Command = exports.Command = class Command {
+const Command = class Command {
 	constructor(name, pattern, funct, guildOnly=true) {
 		if (name===undefined||name===null||name==="") throw new TypeError("name must not be null or undefined.");
 		if (!(pattern instanceof RegExp)) throw new TypeError("Pattern must be Regex!");
