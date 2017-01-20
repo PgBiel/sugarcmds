@@ -1,6 +1,6 @@
 {
   "name": "sugarcmds",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Yet another command framework for discord.js.",
   "scripts": {
     "hello": "echo Hi"
