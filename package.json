@@ -1,1 +1,20 @@
-
+{
+  "name": "sugarcmds",
+  "version": "0.0.1",
+  "description": "Yet another command framework for discord.js.",
+  "scripts": {
+    "hello": "echo Hi"
+  },
+  "author": "PgSuper",
+  "bugs": {
+    "url": "https://github.com/PgBiel/sugarcmds/issues"
+  },
+  "dependencies": {
+    "discord.js": "^11.0.0",
+    "helpful-prototypes": "PgBiel/helpful-prototypes",
+    "saltjs": "Aplet123/saltjs"
+  },
+  "engines": {
+    "node": ">=7.0.0"
+  }
+}
