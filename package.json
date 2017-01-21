@@ -3,7 +3,7 @@
   "version": "0.0.5",
   "description": "Yet another command framework for discord.js.",
   "scripts": {
-    "test": "eslint src"
+    "test": "npm install babel-eslint && eslint src"
   },
   "author": "PgSuper",
   "bugs": {
