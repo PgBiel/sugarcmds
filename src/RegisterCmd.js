@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const Command = require("./Command.js");
 const Client = require("./Client.js");
 const Storage = require("saltjs").Storage;
-const RegisterCmd = exports = function(client, nameOrCmd, pattern, func, guildOnly = true) {
+const RegisterCmd = module.exports = function(client, nameOrCmd, pattern, func, guildOnly = true) {
   if (!(client instanceof Client)) throw new TypeError("Client must be a Client.");
   if (nameOrCmd instanceof Command) {
     client.commands.set(nameOrCmd.name, nameOrCmd);
