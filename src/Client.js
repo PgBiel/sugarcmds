@@ -75,6 +75,8 @@ const Client = class Client extends Discord.Client {
     return true;
   }
 
+  test(){}
+
   /**
     * Command registerer.
     * @param {Command} command Command object to be registered
