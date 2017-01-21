@@ -18,6 +18,7 @@
   },
   "main": "cmds.js",
   "devDependencies": {
+    "jsdoc": "^3.4.3",
     "jsdoc-strip-async-await": "^0.1.0"
   }
 }
