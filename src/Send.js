@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const Client = require("./Client.js");
-const Send = exports.Send = class Send {
+const Send = exports = class Send {
     constructor(channel, client, safeSend = true, logUnknownChannel = true /*log if channel was not found*/ ) {
       if (!(client instanceof Client)) throw new TypeError("Client must be a client.");
       console.log(channel instanceof Discord.Channel);

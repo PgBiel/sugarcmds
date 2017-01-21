@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const Send = require("./Send.js");
 const Storage = require("saltjs").Storage;
-Client = exports.Client = class Client extends Discord.Client {
+Client = module.exports = class Client extends Discord.Client {
   constructor(options) {
     super(options);
     this.commands = new Storage();
