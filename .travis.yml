@@ -3,5 +3,3 @@ node_js:
   - "7.2.1"
 before_script:
   - npm install -g eslint
-  - npm install babel-eslint
-  - npm ls babel-eslint
