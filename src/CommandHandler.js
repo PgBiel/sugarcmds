@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const Command = require("./Command.js");
+const Storage = require("saltjs").Storage;
 const CommandHandler = module.exports = class CommandHandler {
   constructor(client) {
     if (!(client instanceof Client)) throw new TypeError("client must be a client.");
