@@ -1,48 +1,55 @@
 const Discord = require("discord.js");
 const Client = require("./Client.js");
-const Send = module.exports = class Send {
-    constructor(channel, client, safeSend = true, logUnknownChannel = true /*log if channel was not found*/ ) {
-      if (!(client instanceof Client)) throw new TypeError("Client must be a client.");
-      console.log(channel instanceof Discord.Channel);
-      if (!(channel instanceof Discord.Channel)) throw new TypeError(`Channel must be a channel. ${channel instanceof Discord.Channel}`);
-      this.safeSend = typeof safeSend == "boolean" ? safeSend : Boolean(safeSend);
-      this.client = client;
-      this.logUnknownChannel = logUnknownChannel;
-      this.channel = channel;
-      this.channelget = () => {
-        let channel = client.channels.get(this.channel.id);
-        if (!channel)
-          if (this.logUnknownChannel)
-            throw new RangeError("Channel not found!");
-          else {
-            return null;
-          }
-        else {
-          return channel;
-        }
-      };
-    }
+/**
+  * A tool to safely send messages to a channel
+  */
+const Send = class Send {
+  /**
+    * @param {Channel} channel A Discord channel to send
+    * @param {boolean} [safeSend=true] If it should send safely (catching rejections and errors)
+    */
+  constructor(channel, safeSend = true) {
+    if (!(channel instanceof Discord.Channel)) throw new TypeError(`Channel must be a channel.`);
+    /**
+      * The channel to send messages to
+      * @type {Channel}
+      */
+    this.channel = channel;
+    /**
+      * If it should safe send
+      * @type {boolean}
+      */
+    this.safeSend = typeof safeSend == "boolean" ? safeSend : Boolean(safeSend);
+  }
 
-    async send(content, options) {
-        let msg = {};
-        if (this.safeSend)
-          try {
-            msg = await this.channelget().send(content, options);
-            msg.error = null;
-          } catch (err) {
-            let channel = this.channelget();
-            let channelguild = "";
-            if (channel.guild)
-              channelguild = ` of server ${channel.guild.name}`;
-            msg.error = err;
-            console.error(`Error at sending message to ${channel.recipient?`${channel.recipient.username}#${channel.recipient.discriminator}`:(channel.recipients?`Group DM ${"\""+channel.name+"\""||"(that has no name)"}`:`#${channel.name}`)}${channelguild} (ID: ${channel.id}): ${err.toString().replace(/^Error:\s?/, "")}`);
+  /**
+    * Main sending function
+    * @see https://discord.js.org/#/docs/main/master/class/TextChannel?scrollTo=send
+    */
+  async send(content, options) {
+    let msg = {};
+    if (this.safeSend)
+      try {
+        msg = await this.channel.send(content, options);
+        msg.error = null;
+      } catch (err) {
+        let channel = this.channel;
+        let channelguild = "";
+        if (channel.guild)
+          channelguild = ` of server ${channel.guild.name}`;
+        msg.error = err;
+        console.error(`Error at sending message to ${channel.recipient?`${channel.recipient.username}#${channel.recipient.discriminator}`:(channel.recipients?`Group DM ${"\""+channel.name+"\""||"(that has no name)"}`:`#${channel.name}`)}${channelguild} (ID: ${channel.id}): ${err.toString().replace(/^Error:\s?/, "")}`);
       }
     else {
-      msg = await this.channelget().send(content, options);
+      msg = await this.channel.send(content, options);
     }
     return msg;
   }
 
+  /**
+    * Send a file
+    * @see https://discord.js.org/#/docs/main/master/class/TextChannel?scrollTo=sendFile
+    */
   sendFile(attachment, name="file.jpg", content="", options={}) {
     options.file = {
       attachment,
@@ -51,11 +58,19 @@ const Send = module.exports = class Send {
     return this.send(content, options);
   }
 
+  /**
+    * Send an embed
+    * @see https://discord.js.org/#/docs/main/master/class/TextChannel?scrollTo=sendEmbed
+    */
   sendEmbed(embed, content="", options={}) {
     options.embed = embed;
     return this.send(content, options);
   }
 
+  /**
+    * Send a code block
+    * @see https://discord.js.org/#/docs/main/master/class/TextChannel?scrollTo=sendCode
+    */
   sendCode(lang, content="", options={}) {
     let zeargs = Array.from(arguments);
     if (zeargs.length === 1) {
@@ -67,15 +82,28 @@ const Send = module.exports = class Send {
     return this.send(content, options);
   }
 
+  /**
+    * Alias for the main sending function
+    * @see https://discord.js.org/#/docs/main/master/class/TextChannel?scrollTo=sendMessage
+    */
   sendMessage(content, options) {
     return this.send(content, options);
   }
 
+  /**
+    * Send message with TTS
+    * @see https://discord.js.org/#/docs/main/master/class/TextChannel?scrollTo=send
+    */
   sendTTS(content, options={}) {
     options.tts = true;
     return this.send(content, options);
   }
 
+  /**
+    * Set if it should safe send
+    * @param {boolean} [safeSend=(Toggles)] If it should safe send
+    * @returns {boolean} The new value for SafeSend
+    */
   setSafe(bool) {
     if (bool === undefined || bool === null) {
       return this.safeSend = !this.safeSend;
@@ -84,3 +112,4 @@ const Send = module.exports = class Send {
     }
   }
 };
+module.exports = Send;
