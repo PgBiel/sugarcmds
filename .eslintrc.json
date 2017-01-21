@@ -3,7 +3,7 @@
         "node": true
     },
     "extends": "eslint:recommended",
-    "parser": "babel-eslint",
+    "parser": "/home/travis/build/PgBiel/sugarcmds/node_modules/babel-eslint/index.js",
     "parserOptions": {
         "ecmaVersion": 2017,
         "sourceType": "module"
