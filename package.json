@@ -3,7 +3,7 @@
   "version": "0.0.5",
   "description": "Yet another command framework for discord.js.",
   "scripts": {
-    "hello": "echo Hi"
+    "test": "eslint src"
   },
   "author": "PgSuper",
   "bugs": {
