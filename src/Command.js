@@ -17,3 +17,5 @@ const Command = class Command {
     return this.function(message, !!message.guild);
   }
 };
+
+module.exports = Command;
