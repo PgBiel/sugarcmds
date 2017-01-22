@@ -4,3 +4,9 @@ node_js:
 before_script:
   - npm install -g eslint
   - npm install babel-eslint
+  - npm install -g jsdoc
+  - bash ./makedocs.sh
+env:
+  global:
+    - ENCRYPTION_LABEL: "a1b143eb728c"
+    - COMMIT_AUTHOR_EMAIL: "pgbiel@hotmail.com.br"
