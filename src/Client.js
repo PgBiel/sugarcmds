@@ -3,7 +3,7 @@ const Send = require("./Send.js");
 const Storage = require("saltjs").Storage;
 const RegisterCmd = require("./RegisterCmd.js");
 const Command = require("./Command.js");
-const CommandHandler = requie("./CommandHandler.js");
+const CommandHandler = require("./CommandHandler.js");
 /**
   * A modified Discord.js client for the command framework.
   * @extends {Discord.Client}
